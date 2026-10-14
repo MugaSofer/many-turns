@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#000}canvas{display:block}</style></head>
+<body><canvas id="c" width="1920" height="1080"></canvas>
+<script src="engine.js"></script>
+<script src="body.js"></script>
+<script src="styles/vase.js"></script>
+<script src="styles/paper.js"></script>
+<script src="styles/ink.js"></script>
+<script src="styles/vaseanim.js"></script>
+<script src="styles/wavetile.js"></script>
+<script src="styles/special.js"></script>
+<script src="styles/vase_surface.js"></script>
+<script>
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+window.STYLES = window.STYLES || {};
+// still(style, scene) draws a key moment; frame(style, t) draws time t (seconds) of the animation.
+window.still = (style, scene) => { ctx.save(); STYLES[style].still(ctx, scene); ctx.restore(); return cv.toDataURL('image/png'); };
+window.frame = (style, t) => { ctx.save(); STYLES[style].frame(ctx, t); ctx.restore(); return cv.toDataURL('image/jpeg', 0.95); };
+</script></body></html>
